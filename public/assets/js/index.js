@@ -48,6 +48,7 @@ const saveNote = (note) =>
     body: JSON.stringify(note),
   });
 
+//Need to add ids to notes when they are saved.
 const deleteNote = (id) =>
   fetch(`/api/notes/${id}`, {
     method: "DELETE",

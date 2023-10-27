@@ -1,6 +1,7 @@
 //Requiring express.js library
 const express = require("express");
 const fs = require("fs");
+const db = require("./db/db.json");
 //variable PORT to be used for HTTP request
 const PORT = process.env.PORT || 3001;
 //Creating new express app.
@@ -20,15 +21,36 @@ app.get("/api/notes", (req, res) => {
       res.status(500).json({ error: err.message });
       return;
     } else {
-      const parseData = JSON.parse(data);
-      parseData.push(content);
-      writeToFile("notes.html", parseData);
+      // const parseData = JSON.parse(data);
+      // parseData.push(content);
+      // writeToFile("notes.html", parseData);
       console.log(data);
+      //Route inputted here and returned in json format. Ready for next command.
+      res.json(data);
     }
   });
 });
 
-app.post("/api/notes", (req, res) => {});
+app.post("/api/notes", (req, res) => {
+  //creating object called newNote, used for taking data and using it for out purposes.
+  const newNote = {
+    title: req.body.title,
+    text: req.body.text,
+    //adding unique id for new notes
+    id: Math.round(Math.random() * 10000),
+  };
+  //pushing array to db.json
+  db.push(newNote);
+  //Saving to db.json of the writing to be permanent.
+  fs.writeFile("./db/db.json", db, (err, data) => {
+    if (err) {
+      res.status(500).json({ error: err.message });
+    } else {
+      //Route Status 200, good! And parse the data in JSON format.
+      res.status(200).json(data);
+    }
+  });
+});
 
 //PORT is being used when the app is listening to the HTTP requests.
 app.listen(PORT, () => {
