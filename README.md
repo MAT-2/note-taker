@@ -8,6 +8,10 @@ Module 11 - Note-Taker project using Express.JS
 
 ## References
 
+- https://www.geeksforgeeks.org/node-js-fs-readfile-method/
+
 ## License
+
+Refer to LICENSE
 
 ## Walkthrough Video
