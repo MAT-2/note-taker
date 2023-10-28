@@ -2,7 +2,7 @@
 
 This is an assignment to create a web application that has a user to save and delete notes that they have wrote in the note taker.
 
-Deployed Application:
+Deployed Application: https://mat-2.github.io/note-taker/
 
 ## Summary
 
