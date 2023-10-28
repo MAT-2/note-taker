@@ -16,19 +16,17 @@ const app = express();
 app.use(express.static("public"));
 
 app.get("/api/notes", (req, res) => {
-  fs.readFile("notes.html", "utf8", (err, data) => {
-    if (err) {
-      res.status(500).json({ error: err.message });
-      return;
-    } else {
-      // const parseData = JSON.parse(data);
-      // parseData.push(content);
-      // writeToFile("notes.html", parseData);
-      console.log(data);
-      //Route inputted here and returned in json format. Ready for next command.
-      res.json(data);
-    }
-  });
+  res.json(db);
+
+  //Routing to db.json object array
+  // fs.readFile("./db/db.json", (err, data) => {
+  //   if (err) {
+  //     res.status(500).json({ error: err.message });
+  //     return;
+  //   } else {
+  //     res.json(data);
+  //   }
+  // });
 });
 
 app.post("/api/notes", (req, res) => {
